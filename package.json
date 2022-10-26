@@ -1,0 +1,19 @@
+{
+  "name": "kuda-api",
+  "version": "1.0.0",
+  "description": "future of banking in africa",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lassbon/kuda-api.git"
+  },
+  "author": "cohort-2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lassbon/kuda-api/issues"
+  },
+  "homepage": "https://github.com/lassbon/kuda-api#readme"
+}
