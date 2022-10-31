@@ -126,10 +126,6 @@ module.exports = (sequelize, DataTypes) => {
                     type: DataTypes.STRING,
                     defaultValue: null
                 },
-                photo: {
-                    type: DataTypes.STRING,
-                    defaultValue: null
-                },
                 marital_status: {
                     type: DataTypes.STRING,
                     defaultValue: null
