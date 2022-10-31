@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/lassbon/kuda-api/issues"
   },
-  "homepage": "https://github.com/lassbon/kuda-api#readme"
+  "homepage": "https://github.com/lassbon/kuda-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sequelize": "^6.25.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
+  }
 }
