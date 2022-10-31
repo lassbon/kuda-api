@@ -22,6 +22,11 @@ const connection = mysql.createConnection({
 
 
 app.listen(port, () =>{
-    console.log(`This is listening on port ${port}`)
+
+    sequelize.authenticate({
+    
+
+    })
+
 })
 
