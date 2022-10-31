@@ -4,7 +4,11 @@
   "description": "future of banking in africa",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "",
+    "migrate": "npx sequelize-cli db:migrate",
+    "undo-migrate": "npx sequelize-cli db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
