@@ -1,16 +1,14 @@
 const { Sequelize } = require('sequelize');
 
+const sequelize = new Sequelize(
+     process.env.DATABASE_NAME, 
+     process.env.DATABASE_USER,
+     process.env.DATABASE_PASSWORD,
+    {
+    port: process.env.DATABASE_PORT,   
+    host: process.env.DATABASE_HOST,
+    dialect: 'mysql' /* 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+    }
+);
 
-    const sequelize = new Sequelize(
-        process.env.DATABASE_NAME,
-        process.env.DATABASE_USER,
-        process.env.DATABASE_PASSWORD,
-         {
-             host: process.env.HOST,      
-             port: process.env.DATABASE_PORT,
-             dialect: 'mysql' /* one of | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-        })
-         
-
-
-module.exports = sequelize 
+module.exports= sequelize
