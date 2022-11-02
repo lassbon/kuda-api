@@ -1,46 +1,43 @@
 'use strict';
 
-const { Model } = require('DataTypes');
 
-module.exports = (sequelize, DataTypes) => {
-	class otp extends Model {
-		
-	}
-	customer.init(
-        {
-            sn: { 
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
-            
-            },
-            customer_id: { 
-                type: DataTypes.STRING,    
-            },
-            otp: { 
-                type: DataTypes.STRING,
-            
-            },
-            phone: { 
-                type: DataTypes.STRING,
-            
-            },
-            email: { 
-                type: DataTypes.STRING,
-            
-            },
+const { DataTypes  } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => 
+{
+  const otp = sequelize.define('otp', 
+  {
+    sn: { 
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
     
-          created_at: { //createdAt
-            allowNull: false,
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
-          },
-       },
-		{
-			DataTypes,
-			timestamps: false,
-			modelName: 'otp',
-		}
-	);
-	return otp;
-};
+    },
+    customer_id: { 
+        type: DataTypes.STRING,    
+    },
+    otp: { 
+        type: DataTypes.STRING,
+    
+    },
+    phone: { 
+        type: DataTypes.STRING,
+    
+    },
+    email: { 
+        type: DataTypes.STRING,
+    
+    },
+
+createdAt: { //createdAt
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+}, {});
+
+ 
+  return otp;
+
+
+}
