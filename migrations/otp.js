@@ -1,46 +1,46 @@
 'use strict';
 
-const { Model } = require('DataTypes');
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('otp', {
+        sn: { 
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        
+        },
+        customer_id: { 
+            type: Sequelize.STRING,
+            references: {
+                model: 'customer',
+                key: 'customer_id'
+            },
+             
+        },
+        otp: { 
+            type: Sequelize.STRING,
+        
+        },
+        phone: { 
+            type: Sequelize.STRING,
+        
+        },
+        email: { 
+            type: Sequelize.STRING,
+        
+        },
 
-module.exports = (sequelize, DataTypes) => {
-	class otp extends Model {
-		
-	}
-	customer.init(
-        {
-            sn: { 
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
-            
-            },
-            customer_id: { 
-                type: DataTypes.STRING,    
-            },
-            otp: { 
-                type: DataTypes.STRING,
-            
-            },
-            phone: { 
-                type: DataTypes.STRING,
-            
-            },
-            email: { 
-                type: DataTypes.STRING,
-            
-            },
+      created_at: { //createdAt
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+    })
+  },
+   
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('otp')
     
-          created_at: { //createdAt
-            allowNull: false,
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
-          },
-       },
-		{
-			DataTypes,
-			timestamps: false,
-			modelName: 'otp',
-		}
-	);
-	return otp;
+  }
 };
+	
