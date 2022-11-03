@@ -1,38 +1,45 @@
 'use strict';
 
 module.exports = {
-    async up(queryInterface, Sequelize) {
-      await queryInterface.createTable('otp', {
-        sn: {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('otp', {
+        sn: { 
             type: Sequelize.INTEGER,
-            autoincrement: true,
-            primaryKey: true
+            autoIncrement: true,
+            primaryKey: true,
+        
         },
-        customer_id: {
+        customer_id: { 
             type: Sequelize.STRING,
-            reference: {
-                model:'customer',
-                key:'customer_id'
+            references: {
+                model: 'customer',
+                key: 'customer_id'
             },
+             
         },
-        otp: {
+        otp: { 
             type: Sequelize.STRING,
+        
         },
-        email: {
+        phone: { 
             type: Sequelize.STRING,
+        
         },
-        phone_number: {
+        email: { 
             type: Sequelize.STRING,
+        
         },
-        created_at: {//createdAt
-            allowNull: false,
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-        },
-      })
-    },
-    async down(queryInterface, Sequelize)
-    {
-      await queryInterface.dropTable('otp');
-    }
-  };
+
+      created_at: { //createdAt
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+    })
+  },
+   
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('otp')
+    
+  }
+};
