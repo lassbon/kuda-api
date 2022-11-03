@@ -1,7 +1,7 @@
 
-const Customer = require('../models/customer.model');
+const Customer = require('../models/customer');
 
-const register = (req, res) => { 
+const register = async (req, res) => { 
     // Do something
 
 

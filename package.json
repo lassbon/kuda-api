@@ -4,7 +4,7 @@
   "description": "future of banking in africa",
   "main": "index.js",
   "scripts": {
-    "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
+    "undo-migrate": "npx sequelize-cli db:migrate:undo",
     "migrate": "npx sequelize-cli db:migrate",
     "start": "node index.js",
     "dev": "nodemon index.js",

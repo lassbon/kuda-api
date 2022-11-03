@@ -11,7 +11,7 @@ module.exports = {
         customer_id: {
             type: Sequelize.STRING,
             reference: {
-                model: 'customer',
+                model:'customer',
                 key:'customer_id'
             },
         },
@@ -24,15 +24,10 @@ module.exports = {
         phone_number: {
             type: Sequelize.STRING,
         },
-        created_at: {
+        created_at: {//createdAt
             allowNull: false,
             type: Sequelize.DATE,
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-        },
-        modified_at: {
-            allowNull: false,
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
       })
     },

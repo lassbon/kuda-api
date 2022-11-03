@@ -11,8 +11,8 @@ module.exports = {
             unique: true
         },
         customer_id: {
-            type: Sequelize.STRING,
-            uPRIMARYkEY: true
+            type: Sequelize.UUID,
+            primaryKey: true
         },
         title: {
             type: Sequelize.STRING,
