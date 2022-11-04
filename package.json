@@ -23,5 +23,8 @@
     "joi": "^17.6.4",
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
   }
 }
