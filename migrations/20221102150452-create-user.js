@@ -1,155 +1,156 @@
 'use strict';
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
       sn: { 
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         unique: true
       },
       customer_id: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           primaryKey: true
       },
       title: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       lastname: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       othernames: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         uniqueKey:true
       },
       is_email_verified: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         defaultValue: false
       },
       phone_number: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           allowNull: true,
           defaultValue: null
       },
       is_phone_number_verified: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             defaultValue: false
       },
       gender: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       house_number: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       street: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       landmark: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       local_govt: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       dob: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       nin: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: true,
         defaultValue: null
       },
       is_nin_verified: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         defaultValue: null
       },
       bvn: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         allowNull: true,
         defaultValue: null
        },
       is_bvn_verified: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         defaultValue: null
        },
     country: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         defaultValue: null
     },
         state_origin: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         local_govt_origin: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         means_of_id: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         means_of_id_number: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         is_means_of_id_number_verified: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         photo: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
         marital_status: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             defaultValue: null
         },
       password_hash: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       password_salt: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         },
         is_disable: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             defaultValue: false
         },
         is_disable_reason: {
-            type: DataTypes.TEXT,
+            type: Sequelize.TEXT,
             defaultValue: null
         },
         createdAt: { //createdAt
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: { //updatedAt
         allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       createdAt: {
         allowNull: false,
