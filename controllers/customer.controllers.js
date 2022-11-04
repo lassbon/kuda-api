@@ -134,6 +134,7 @@ const verifyEmailOtp = (req, res) => {
         })
         .then((data3) => { 
 
+            sendEmail(email, 'Welcome', ` Hello  ${email},\n You are welcome to our digital platform. We hope banking with us will be a pleasant experience`)
             res.status(200).send({
                 status: true,
                 message: 'Email verification successful'

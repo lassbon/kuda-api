@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('otp', {
+    await queryInterface.createTable('otps', {
         sn: { 
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -12,7 +12,7 @@ module.exports = {
         customer_id: { 
             type: Sequelize.STRING,
             references: {
-                model: 'customer',
+                model: 'customers',
                 key: 'customer_id'
             },
              
@@ -30,7 +30,12 @@ module.exports = {
         
         },
 
-      created_at: { //createdAt
+      createdAt: { //createdAt
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      updatedAt: { //updatedAt
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
