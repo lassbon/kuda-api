@@ -1,5 +1,5 @@
 const {registerValidation}  = require('../validations/validatejoi')
-const { customer, otp } = require('../models');
+const { User, otp } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
@@ -44,7 +44,7 @@ const register = (req, res) => {
     })
     .then((data2) => {
 
-        return customer.create({
+        return User.create({
             customer_id: customer_id,
             lastname: surname,
             othernames: othernames,
