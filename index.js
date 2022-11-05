@@ -1,15 +1,23 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
-const sequelize =require('./config/sequelize')
+const port = process.env.APP_PORT
+const  sequelize  = require('./config/sequelize')
 const bodyParser = require('body-parser')
-const port = 3000
+const registerRoute = require('./routes/customer.route')
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.use(bodyParser.json())
+app.use(registerRoute)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+
+    sequelize.authenticate()
+    .then(sucessData => {
+            console.log('Connection has been established successfully.');
+    })
+    .catch(error => {
+            console.error('Unable to connect to the database:', error);
+    })
+    
 })
