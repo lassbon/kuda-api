@@ -20,7 +20,7 @@ const register = (req, res) => {
             message: error.details[0].message
         })
     }else{
-        
+
         console.log("alas: " ,JSON.stringify(req.body))
         const { surname, othernames, email, phone, password, repeat_password } = req.body;
         const customer_id = uuidv4()

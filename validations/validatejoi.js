@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const registervalidation = (data)=> {
+const registerValidation = (data)=> {
     const schema = Joi.object({
         surname: Joi.string().min(2).required(),
         othernames: Joi.string().min(2).required(),
@@ -12,4 +12,4 @@ const registervalidation = (data)=> {
     return schema.validate(data)
 }
 
-module.exports = {registervalidation}
+module.exports = {registerValidation}
