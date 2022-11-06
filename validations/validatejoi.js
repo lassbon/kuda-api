@@ -12,4 +12,4 @@ const registervalidation = (data)=> {
     return schema.validate(data)
 }
 
-module.exports = registervalidation
+module.exports = {registervalidation}
