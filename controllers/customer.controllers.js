@@ -25,6 +25,7 @@ const register = (req, res) => {
     
     const { surname, othernames, email, phone, password, repeat_password } = req.body;
     const customer_id = uuidv4()
+    
         try {
         
     customer.findAll({
