@@ -27,7 +27,7 @@ const register = (req, res) => {
         const _otp = generateOtp()
         try {
 
-        customer.findAll({
+        users.findAll({
             where: {
                 [Op.or]: [
                     { email: email },
@@ -44,7 +44,7 @@ const register = (req, res) => {
         })
         .then((data2) => {
 
-            return user.create({
+            return users.create({
                 customer_id: customer_id,
                 lastname: surname,
                 othernames: othernames,
@@ -100,7 +100,7 @@ const register = (req, res) => {
 
         const { email, _otp } = req.params
         try {
-            otp.findAll({
+            otps.findAll({
                 where: {
                     email: email,
                     otp: _otp
@@ -115,7 +115,7 @@ const register = (req, res) => {
 
                 if (convertToMin > 5) throw new Error('OTP has expired')
 
-                return customer.update({ is_email_verified: true }, {
+                return users.update({ is_email_verified: true }, {
                     where: {
                     email: email
                     }
@@ -125,7 +125,7 @@ const register = (req, res) => {
             
             })
             .then((emailverifiedData) => { 
-                return otp.destroy({
+                return otps.destroy({
                     where: {
                         otp: _otp,
                         email: email
