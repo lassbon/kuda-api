@@ -27,7 +27,7 @@ const register = (req, res) => {
         const _otp = generateOtp()
         try {
 
-        User.findAll({
+        user.findAll({
             where: {
                 [Op.or]: [
                     { email: email },
@@ -44,7 +44,7 @@ const register = (req, res) => {
         })
         .then((data2) => {
 
-            return User.create({
+            return user.create({
                 customer_id: customer_id,
                 lastname: surname,
                 othernames: othernames,
