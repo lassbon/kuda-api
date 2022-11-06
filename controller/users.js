@@ -1,5 +1,5 @@
 const {registerValidation}  = require('../validations/validatejoi')
-const { user, otps } = require('../models');
+const { user, otp } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
@@ -55,10 +55,10 @@ const register = (req, res) => {
             })
 
         })
-        .then((insertIntootpsTable) => {
+        .then((insertIntootpTable) => {
 
         
-            return otps.create({
+            return otp.create({
                 customer_id: customer_id,
                 otp: _otp,
                 email: email,
@@ -100,7 +100,7 @@ const register = (req, res) => {
 
         const { email, _otp } = req.params
         try {
-            otps.findAll({
+            otp.findAll({
                 where: {
                     email: email,
                     otp: _otp
@@ -125,7 +125,7 @@ const register = (req, res) => {
             
             })
             .then((emailverifiedData) => { 
-                return otps.destroy({
+                return otp.destroy({
                     where: {
                         otp: _otp,
                         email: email

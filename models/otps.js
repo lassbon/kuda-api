@@ -3,7 +3,7 @@
 
 const { DataTypes  } = require("sequelize");
 
-module.exports = (sequelize, DataTypes) => 
+module.exports = (sequelize, otp) => 
 {
   const otp = sequelize.define('otps', 
   {
