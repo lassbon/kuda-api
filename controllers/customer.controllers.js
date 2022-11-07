@@ -159,4 +159,4 @@ const verifyEmailOtp = (req, res) => {
 
 
 
-module.exports = { register , verifyEmailOtp}
+module.exports = { register , verifyEmailOtp , sendEmail}
