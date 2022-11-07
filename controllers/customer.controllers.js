@@ -3,6 +3,7 @@ const { customer, otp } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
+const { sendEmail } = require('../services/email')
 
 
 
