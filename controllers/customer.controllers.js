@@ -4,6 +4,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
 const { sendEmail } = require('../services/email')
+const { sendSms }  = require(`../services/email`)
 
 
 
@@ -26,7 +27,9 @@ const register = (req, res) => {
     
     const { surname, othernames, email, phone, password, repeat_password } = req.body;
     const customer_id = uuidv4()
-        try {
+    //gconst _otp = generateOtp
+        
+    try {
         
     customer.findAll({
         where: {
@@ -43,7 +46,7 @@ const register = (req, res) => {
        return hashMyPassword(password) //[hash, salt]
 
     })
-    .then((data2) => {
+    .then((hash,salt) => {
     
         return   customer.create({
                 customer_id: customer_id,
@@ -51,8 +54,8 @@ const register = (req, res) => {
                 othernames: othernames, 
                 email: email, 
                 phone_number: phone, 
-                password_hash: data2[0],
-                password_salt: data2[1],
+                password_hash:hash,
+                password_salt:salt,
             })
 
     })
@@ -111,7 +114,7 @@ const verifyEmailOtp = (req, res) => {
         
             const convertToMin = Math.floor(timeOtpWasSent / 60000) // 60000 is the number of milliseconds in a minute
 
-            if (convertToMin > 5) throw new Error('OTP has expired')
+            if (convertToMin > OTPEsperationTime) throw new Error('OTP has expired')
 
             return customer.update({ is_email_verified: true }, {
                 where: {
