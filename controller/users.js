@@ -1,5 +1,5 @@
 const {registerValidation}  = require('../validations/validatejoi')
-const { user, otp } = require('../models');
+const { users, otp } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
@@ -27,7 +27,7 @@ const register = (req, res) => {
         const _otp = generateOtp()
         try {
 
-        user.findAll({
+        users.findAll({
             where: {
                 [Op.or]: [
                     { email: email },
@@ -44,7 +44,7 @@ const register = (req, res) => {
         })
         .then((data2) => {
 
-            return user.create({
+            return userss.create({
                 customer_id: customer_id,
                 lastname: surname,
                 othernames: othernames,
@@ -115,7 +115,7 @@ const register = (req, res) => {
 
                 if (convertToMin > 5) throw new Error('OTP has expired')
 
-                return user.update({ is_email_verified: true }, {
+                return userss.update({ is_email_verified: true }, {
                     where: {
                     email: email
                     }

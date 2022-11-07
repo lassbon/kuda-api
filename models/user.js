@@ -163,7 +163,7 @@ country: {
   }
   }, {
     sequelize,
-    modelName: 'user',
+    modelName: 'users',
   });
   return user;
 };
