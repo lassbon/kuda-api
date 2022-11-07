@@ -12,8 +12,8 @@ module.exports = {
         customer_id: { 
             type: Sequelize.STRING,
             references: {
-                model: 'Users',
-                key: 'customer_id'
+              model: 'users',
+              key: 'customer_id'
             },
              
         },
@@ -39,7 +39,7 @@ module.exports = {
   },
    
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('otp')
+    await queryInterface.dropTable('otps')
     
   }
 };
