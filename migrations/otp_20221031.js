@@ -30,7 +30,7 @@ module.exports = {
         
         },
 
-      created_at: { //createdAt
+      createdAt: { //createdAt
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
