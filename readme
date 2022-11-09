@@ -1,1 +1,6 @@
 Kuda Api - This will send all the banks out of business very soon
+
+
+
+
+npx sequelize-cli model:generate --name User --attributes

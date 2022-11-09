@@ -7,7 +7,7 @@ const sendEmail = (receipientEmail, title, details) => {
 
     const msg = {
         to: receipientEmail, // Change to your recipient
-        from: 'info@zulfahgroup.com', // Change to your verified sender
+        from: process.env.EMAIL_SENDER, // Change to your verified sender
         subject: title,
         text: details
       }
@@ -15,8 +15,8 @@ const sendEmail = (receipientEmail, title, details) => {
       sgMail
         .send(msg)
         .then((response) => {
-          console.log(response[0].statusCode)
-          console.log(response[0].headers)
+         // console.log(response[0].statusCode)
+         // console.log(response[0].headers)
         })
         .catch((error) => {
           console.error(error)
