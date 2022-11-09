@@ -1,43 +1,29 @@
 'use strict';
-
-
-const { DataTypes  } = require("sequelize");
-
-module.exports = (sequelize, DataTypes) => 
-{
-  const otp = sequelize.define('otps', 
-  {
-    sn: { 
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    
-    },
-    customer_id: { 
-        type: DataTypes.STRING,    
-    },
-    otp: { 
-        type: DataTypes.STRING,
-    
-    },
-    phone: { 
-        type: DataTypes.STRING,
-    
-    },
-    email: { 
-        type: DataTypes.STRING,
-    
-    },
-
-createdAt: { //createdAt
-    allowNull: false,
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-}, {});
-
- 
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class otp extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  otp.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+   }, 
+    otp: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    email:  DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'otp',
+  });
   return otp;
-
-
-}
+};

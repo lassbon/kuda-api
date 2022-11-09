@@ -14,11 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   wallet.init({
-    sn: { 
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      unique: true
-    },
+
     customer_id: {
         type: DataTypes.STRING,
         primaryKey: true

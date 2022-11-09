@@ -28,7 +28,7 @@ const register = (req, res) => {
         const _otp = generateOtp()
     try {
 
-    customers.findAll({
+    customer.findAll({
         where: {
             [Op.or]: [
                 { email: email },
@@ -62,8 +62,7 @@ const register = (req, res) => {
            
             otp: _otp,
             email: email,
-            phone: phone,
-            
+            phone: phone 
         })
 
     })
@@ -241,3 +240,16 @@ const verifyPhoneOtp = (req, res) => {
 
 
 module.exports = { register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp }
+
+
+
+
+
+
+
+
+
+
+
+
+
