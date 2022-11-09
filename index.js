@@ -4,6 +4,7 @@ const app = express()
 const port = process.env.APP_PORT
 const  sequelize  = require('./config/sequelize')
 const bodyParser = require('body-parser')
+const displayRoutes = require('express-routemap');
 const registerRoute = require('./routes/customer.route')
 
 
@@ -21,3 +22,6 @@ app.listen(port, () => {
     })
     
 })
+
+
+displayRoutes(app)

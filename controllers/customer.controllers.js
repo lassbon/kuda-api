@@ -9,8 +9,6 @@ const { sendSms } = require('../services/sms')
 
 
 
-
-
 const register = (req, res) => { 
     // joi validation
     const { error, value } = registerValidation(req.body)
@@ -240,4 +238,111 @@ const verifyPhoneOtp = (req, res) => {
 
 
 
-module.exports = { register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp }
+const resendPhoneOtp = async (req, res) => {
+
+    const { phone } = req.params
+    const newOtp = generateOtp()
+
+    try { 
+
+        const findOtpWithPhone =   await otp.findAll({ where: { phone: phone } })
+        
+        if (findOtpWithPhone.length == 0) throw new Error('Phone number does not exist')
+   
+        await otp.destroy({  where: {  phone: phone } })
+
+        await otp.create({ otp: newOtp, phone: phone })
+        
+        sendSms(phone, `Hello, your new otp is ${newOtp}`)
+
+        res.status(200).send({
+            status: true,
+            message: 'otp resent to phone number'
+        })
+
+
+        // otp.findAll({
+        //     where: {
+        //         phone: phone
+        //     }
+        // })
+        // .then(data => {
+        //         if (data.length == 0) throw new Error('Phone number does not exist')
+              
+        //     return otp.destroy({
+        //             where: {
+        //                 phone: phone
+        //             }
+        //     })
+        // })
+        // .then(data2 => {
+
+        //         return otp.create({
+        //             otp: newOtp,
+        //             phone: phone
+        //         })
+        //     })
+        // .then(data3 => { 
+        //         sendSms(phone, `Hello, your new otp is ${newOtp}`)
+        //         res.status(200).send({
+        //             status: true,
+        //             message: 'otp resent to  phone number'
+        //         })
+        // })
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+
+
+
+
+}
+
+
+
+const resendEmailOtp = async (req, res) => {
+
+    const { email } = req.params
+    const newOtp = generateOtp()
+
+    try { 
+
+        const findOtpWithEmail =   await otp.findAll({ where: { email: email } })
+        
+        if (findOtpWithEmail.length == 0) throw new Error('Email does not exist')
+   
+        await otp.destroy({  where: {  email: email } })
+
+        await otp.create({ otp: newOtp, email: email })
+        
+        sendEmail(email, 'RESEND OTP', `Hello, your new otp is ${newOtp}`)  
+
+        res.status(200).send({
+            status: true,
+            message: 'otp resent to email'
+        })
+
+
+     
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+
+
+
+
+}
+
+
+module.exports = {
+    register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
+    resendPhoneOtp, resendEmailOtp
+}
