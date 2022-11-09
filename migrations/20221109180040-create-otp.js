@@ -3,29 +3,33 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('otps', {
-      id: {
-        allowNull: false,
+      id: {  
+        type: Sequelize.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
-      firstName: {
-        type: Sequelize.STRING
+      otp: { 
+          type: Sequelize.STRING,
       },
-      lastName: {
-        type: Sequelize.STRING
+      phone: { 
+          type: Sequelize.STRING,
+      
       },
-      email: {
-        type: Sequelize.STRING
+      email: { 
+          type: Sequelize.STRING,
+      
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+
+    createdAt: { //createdAt
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updatedAt: { //updatedAt
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
     });
   },
   async down(queryInterface, Sequelize) {
