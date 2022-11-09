@@ -28,7 +28,7 @@ const register = (req, res) => {
         const _otp = generateOtp()
     try {
 
-    customer.findAll({
+    customers.findAll({
         where: {
             [Op.or]: [
                 { email: email },
@@ -63,7 +63,7 @@ const register = (req, res) => {
             otp: _otp,
             email: email,
             phone: phone,
-            email: email
+            
         })
 
     })

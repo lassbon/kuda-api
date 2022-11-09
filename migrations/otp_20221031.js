@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('otp', {
+    await queryInterface.createTable('otps', {
         sn: { 
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -12,7 +12,7 @@ module.exports = {
         customer_id: { 
             type: Sequelize.STRING,
             references: {
-                model: 'customer',
+                model: 'customers',
                 key: 'customer_id'
             },
              
@@ -39,7 +39,7 @@ module.exports = {
   },
    
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('otp')
+    await queryInterface.dropTable('otps')
     
   }
 };

@@ -5,7 +5,7 @@ const { DataTypes  } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => 
 {
-  const otp = sequelize.define('otp', 
+  const otp = sequelize.define('otps', 
   {
     sn: { 
         type: DataTypes.INTEGER,
