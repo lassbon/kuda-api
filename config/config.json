@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "development": {
     "username": "root",
     "password": "",
@@ -9,13 +10,31 @@
   "test": {
     "username": "root",
     "password": "null",
+=======
+  "development": {  
+    "username": "root",
+    "password": "root",
+    "database": "kuda_bank",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": "8889"
+  
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+>>>>>>> _setup
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
+<<<<<<< HEAD
     "password": "null",
+=======
+    "password": null,
+>>>>>>> _setup
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"

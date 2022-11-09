@@ -10,6 +10,7 @@ const registerRoute = require('./routes/customer.route')
 app.use(bodyParser.json())
 app.use(registerRoute)
 
+<<<<<<< HEAD
 
 
 
@@ -24,4 +25,16 @@ sequelize.authenticate()
         console.error('Unable to connect to the database:', error);
     }) 
 
+=======
+app.listen(port, () => {
+
+    sequelize.authenticate()
+    .then(sucessData => {
+            console.log('Connection has been established successfully.');
+    })
+    .catch(error => {
+            console.error('Unable to connect to the database:', error);
+    })
+    
+>>>>>>> _setup
 })

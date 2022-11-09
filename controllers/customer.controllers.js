@@ -62,7 +62,8 @@ const register = (req, res) => {
            
             otp: _otp,
             email: email,
-            phone: phone 
+            phone: phone,
+            email: email
         })
 
     })
@@ -240,16 +241,3 @@ const verifyPhoneOtp = (req, res) => {
 
 
 module.exports = { register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> _setup
 const Joi = require('joi')
 
 
