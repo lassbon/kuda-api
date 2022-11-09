@@ -1,25 +1,19 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('wallets', {
-      sn: {
+    await queryInterface.createTable('Accounts', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      wallet_id: {
-        type: Sequelize.STRING,
-        unique: true
+      account_number: {
+        type: Sequelize.STRING
       },
-      wallet_type: {
-        type: Sequelize.ENUM('1', '2', '3'), //1- spent, 2-save, 3-borrow
-      },
-      balance: {
-        type: Sequelize.DECIMAL(20, 2)
-      },
-      currency: {
-        type: Sequelize.ENUM('NGN', 'USD')
+      account_name: {
+        type: Sequelize.STRING
       },
       customer_id: {
         type: Sequelize.STRING,
@@ -27,6 +21,12 @@ module.exports = {
           model: 'Customers',
           key: 'customer_id'
         }
+      },
+      balance: {
+        type: Sequelize.DECIMAL(10, 2)
+      },
+      lien: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +39,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('wallets');
+    await queryInterface.dropTable('Accounts');
   }
 };
