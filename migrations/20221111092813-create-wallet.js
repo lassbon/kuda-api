@@ -3,20 +3,15 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('wallets', {
-      id: {
+      sn: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING
-      },
-      lastName: {
-        type: Sequelize.STRING
-      },
-      email: {
-        type: Sequelize.STRING
+      wallet_id: {
+        type: Sequelize.STRING,
+        unique: true
       },
       createdAt: {
         allowNull: false,
