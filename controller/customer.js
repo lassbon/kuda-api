@@ -341,8 +341,60 @@ const resendEmailOtp = async (req, res) => {
 
 }
 
+const updateCustomer = async (req, res) => {  
+    // joi validation
+const { error, value } = updateValidation(req.body)
+
+if (error != undefined) {
+      
+    res.status(400).json({
+        status: false,
+        message: error.details[0].message
+    })
+} else {
+    const { customer_id } = req.params
+    const { title, lastname, othernames, gender, house_number, street, landmark, local_govt, dob,
+        country, state_origin, local_govt_origin, means_of_id, means_of_id_number, photo,
+        marital_status } = req.body
+
+    try {
+
+        await customer.update({
+            title: title,
+            lastname: lastname,
+            othernames: othernames,
+            gender: gender,
+            house_number: house_number,
+            street: street,
+            landmark: landmark,
+            local_govt: local_govt,
+            dob: dob,
+            country: country,
+            state_origin: state_origin,
+            local_govt_origin: local_govt_origin,
+            means_of_id: means_of_id,
+            means_of_id_number: means_of_id_number,
+            marital_status: marital_status
+        }, { where: { customer_id: customer_id } })
+
+        res.status(200).send({
+            status: true,
+            message: 'Customer updated successfully'
+        })
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+}
+
+
+}
+
 
 module.exports = {
     register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
-    resendPhoneOtp, resendEmailOtp
+    resendPhoneOtp, resendEmailOtp, updateCustomer
 }
