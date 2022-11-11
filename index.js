@@ -8,6 +8,7 @@ const registerRoute = require('./route/customer')
 
 
 app.use(bodyParser.json())
+
 app.use(registerRoute)
 
 app.listen(port, () => {

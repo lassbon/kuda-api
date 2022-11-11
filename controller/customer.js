@@ -146,7 +146,7 @@ const verifyEmailOtpAndSendPhoneOtp = (req, res) => {
         })
         .then((data4) => {
             
-                   //send an otp to the phone number
+            //send an otp to the phone number
             sendSms(phone, `Hello, your otp is ${phone_otp}`)
             sendEmail(email, 'Email Verification Successful', ` Hello  ${email},\n Thank you for verifying your email. An otp has been sent to your phone number, kindly use this otp to also verify your phone number`)
          
