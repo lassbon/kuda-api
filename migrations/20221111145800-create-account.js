@@ -9,13 +9,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      account_number: {
         type: Sequelize.STRING
       },
-      lastName: {
+      account_name: {
         type: Sequelize.STRING
       },
-      email: {
+      customer_id: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Customers',
+          key: 'customer_id'
+        }
+      },
+      balance: {
+        type: Sequelize.DECIMAL(10, 2)
+      },
+      lien: {
         type: Sequelize.STRING
       },
       createdAt: {
