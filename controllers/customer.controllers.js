@@ -178,9 +178,149 @@ const verifyEmailOtpAndSendPhoneOtp = (req, res) => {
 
 }
 
+const verifyPhoneOtp = (req, res) => { 
+
+    const { phone, phone_otp } = req.params
+    try {
+        otp.findAll({
+            where: {
+                phone: phone,
+                otp: phone_otp
+            },
+            attributes: [ 'otp', 'phone', 'createdAt'], 
+        })
+        .then((otpDataFetched) => {
+            if (otpDataFetched.length == 0) throw new Error('Invalid OTP')
+
+            const timeOtpWasSent = Date.now() - new Date(otpDataFetched[0].dataValues.createdAt)
+        
+            const convertToMin = Math.floor(timeOtpWasSent / 60000) // 60000 is the number of milliseconds in a minute
+
+            if (convertToMin > process.env.OTPExpirationTime) throw new Error('OTP has expired')
+
+            return customer.update({ is_phone_number_verified: true }, {
+                where: {
+                    phone_number: phone
+                }
+              })
+            
+
+        
+        })
+        .then((phoneverifiedData) => { 
+            return otp.destroy({
+                where: {
+                    otp: phone_otp,
+                    phone: phone
+                }
+            })
+        })
+        .then((data5) => {
+                res.status(200).send({
+                    status: true,
+                    message: 'Phone successfuly verified. Welcome onboard'
+                })
+        })
+        .catch((err) => {
+            res.status(400).json({
+                status: false,
+                message: err.message || "Some error occurred"
+            })
+        })
+        
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err.message || "Some error occurred"
+        })
+
+    }
+
+}
+
+
+
+const resendPhoneOtp = async (req, res) => {
+
+    const { phone } = req.params
+    const newOtp = generateOtp()
+
+    try { 
+
+        const findOtpWithPhone =   await otp.findAll({ where: { phone: phone } })
+        
+        if (findOtpWithPhone.length == 0) throw new Error('Phone number does not exist')
+   
+        await otp.destroy({  where: {  phone: phone } })
+
+        await otp.create({ otp: newOtp, phone: phone })
+        
+        sendSms(phone, `Hello, your new otp is ${newOtp}`)
+
+        res.status(200).send({
+            status: true,
+            message: 'otp resent to phone number'
+        })
+
+
+        
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+
+
+
+
+}
+
+
+
+const resendEmailOtp = async (req, res) => {
+
+    const { email } = req.params
+    const newOtp = generateOtp()
+
+    try { 
+
+        const findOtpWithEmail =   await otp.findAll({ where: { email: email } })
+        
+        if (findOtpWithEmail.length == 0) throw new Error('Email does not exist')
+   
+        await otp.destroy({  where: {  email: email } })
+
+        await otp.create({ otp: newOtp, email: email })
+        
+        sendEmail(email, 'RESEND OTP', `Hello, your new otp is ${newOtp}`)  
+
+        res.status(200).send({
+            status: true,
+            message: 'otp resent to email'
+        })
+
+
+     
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+
+
+
+
+}
 
 
 
 
 
-module.exports = { register , verifyEmailOtpAndSendPhoneOtp , sendEmail}
+
+
+module.exports = { register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
+    resendPhoneOtp, resendEmailOtp}
