@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> _setup
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
