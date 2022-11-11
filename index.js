@@ -4,6 +4,7 @@ const app = express()
 const port = process.env.APP_PORT
 const  sequelize  = require('./config/sequelize')
 const bodyParser = require('body-parser')
+const displayRoutes = require('express-routemap');
 const registerRoute = require('./routes/customer.route')
 
 
@@ -36,5 +37,12 @@ app.listen(port, () => {
             console.error('Unable to connect to the database:', error);
     })
     
+<<<<<<< HEAD
 >>>>>>> _setup
 })
+=======
+})
+
+
+displayRoutes(app)
+>>>>>>> _setup
