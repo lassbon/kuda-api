@@ -14,9 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   otp.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+   }, 
+    otp: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    email:  DataTypes.STRING
   }, {
     sequelize,
     modelName: 'otp',
