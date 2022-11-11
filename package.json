@@ -31,11 +31,11 @@
     "joi": "^17.6.4",
     "mysql2": "^2.3.3",
     "node-fetch": "^3.2.10",
-    "nodemon": "^2.0.20",
     "sequelize": "^6.25.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.5.2"
+    "nodemon": "^2.0.20",
+    "express-routemap": "^1.6.0"
   }
 }
