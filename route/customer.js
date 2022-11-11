@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { register, verifyEmailOtp } = require('../controller/users')
+const { register, verifyEmailOtp } = require('../controller/customer')
 
 // @route   POST api/customers
 router.post('/register', register)
