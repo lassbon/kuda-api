@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     lien: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Account',
+    modelName: 'account',
   });
   return Account;
 };

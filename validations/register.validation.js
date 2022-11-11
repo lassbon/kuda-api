@@ -19,7 +19,11 @@ const registerValidation = (data) => {
   
   return  schema.validate(data);
 
+
 }
+
+
+
 
 
 

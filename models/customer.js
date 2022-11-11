@@ -12,7 +12,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   customer.init({
-  
+    sn:{
+      type: DataTypes.INTEGER,
+      autoIncrement:true
+  },
     customer_id: {
         type: DataTypes.STRING,
         primaryKey: true
