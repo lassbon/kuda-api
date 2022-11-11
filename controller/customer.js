@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { registerValidation }  = require('../validations/registervalidation')
+const { registerValidation }  = require('../validations/validatejoi')
 const { customer, otp } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
