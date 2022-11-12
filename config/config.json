@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "port":"3306",
     "database":"kuda_api_db",
     "host": "localhost",

@@ -13,12 +13,12 @@ app.use(registerRoute)
 
 app.listen(port, () => {
 
-//     sequelize.authenticate()
-//     .then(sucessData => {
-//             console.log('Connection has been established successfully.');
-//     })
-//     .catch(error => {
-//             console.error('Unable to connect to the database:', error);
-//     })
+    // sequelize.authenticate()
+    // .then(sucessData => {
+    //         console.log('Connection has been established successfully.');
+    // })
+    // .catch(error => {
+    //         console.error('Unable to connect to the database:', error);
+    // })
     
 })
