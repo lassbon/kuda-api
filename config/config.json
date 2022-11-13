@@ -1,16 +1,4 @@
 {
-<<<<<<< HEAD
-  "development": {
-    "username": "root",
-    "password": "",
-    "database": "kuda_api",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": "null",
-=======
   "development": {  
     "username": "root",
     "password": "root",
@@ -23,20 +11,14 @@
   "test": {
     "username": "root",
     "password": null,
->>>>>>> _setup
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "null",
-=======
     "password": null,
->>>>>>> _setup
     "database": "database_production",
-    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
