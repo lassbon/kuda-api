@@ -26,9 +26,10 @@ const login = async(req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '1h' })
         
+            res.setHeader('token', token)
             res.status(200).json({
                 status: true,
-                authorization: token,
+                token: token,
                 message: "Sucessfully login"
             })
 

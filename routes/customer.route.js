@@ -3,7 +3,7 @@ const router = express.Router()
 const { register, verifyEmailOtpAndSendPhoneOtp,
         verifyPhoneOtp, resendPhoneOtp, resendEmailOtp,
         updateCustomer } = require('../controllers/customer.controllers')
-const { login } = require('../controllers/auth.controllers')
+const { authorization } = require('../middlewares/authorization')
 
 
 // @route   POST api/customers
@@ -17,9 +17,7 @@ router.post('/resend-phone-otp/:phone', resendPhoneOtp)
 
 router.post('/resend-email-otp/:email', resendEmailOtp)
 
-router.put('/update/:customer_id', updateCustomer)
+router.put('/update/:customer_id', authorization, updateCustomer)
 
-
-router.post('/login', login)
 
 module.exports = router
