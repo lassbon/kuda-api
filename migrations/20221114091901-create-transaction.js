@@ -9,14 +9,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      transaction_id: {
+        type: Sequelize.STRING,
+        unique: true
+      },
+      customer_id: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Customers',
+          key: 'customer_id'
+        }
+      },
+      transaction_type: {
+        type: Sequelize.ENUM('1', '2'), //1- debit, 2-credit
+      },
+      transaction_description: {
         type: Sequelize.STRING
       },
-      lastName: {
-        type: Sequelize.STRING
+      balance_before: {
+        type: Sequelize.DECIMAL(20, 2)
       },
-      email: {
-        type: Sequelize.STRING
+      balance_after: {
+        type: Sequelize.DECIMAL(20, 2)
       },
       createdAt: {
         allowNull: false,
