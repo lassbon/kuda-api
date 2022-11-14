@@ -145,12 +145,12 @@ module.exports = {
             type: Sequelize.TEXT,
             defaultValue: null
         },
-      created_at: { //createdAt
+        createdAt: { //createdAt
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
-      modified_at: { //updatedAt
+      updatedAtt: { //updatedAt
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

@@ -16,8 +16,6 @@ const register = (req, res) => {
     // Do something
     const { error, value } = registerValidation(req.body)
 
-
-   
     if (error != undefined) {
       
         res.status(400).json({
@@ -47,16 +45,16 @@ const register = (req, res) => {
        return hashMyPassword(password) //[hash, salt]
 
     })
-    .then((hash,salt) => {
+    .then(([hash,salt]) => {
     
-        return   customer.create({
+        return  customer.create({
                 customer_id: customer_id,
                 lastname:  surname,
                 othernames: othernames, 
                 email: email, 
                 phone_number: phone, 
-                password_hash:hash,
-                password_salt:salt,
+                password_hash: hash,
+                password_salt: salt,
             })
 
     })

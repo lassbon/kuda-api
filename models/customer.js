@@ -12,7 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   customer.init({
-  
+    sn: { 
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      unique: true
+    },
+
     customer_id: {
         type: DataTypes.STRING,
         primaryKey: true
@@ -130,11 +135,11 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           defaultValue: null
       },
-    password_hash: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password_salt: {
+      password_hash: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      password_salt: {
       type: DataTypes.STRING,
       allowNull: false,
       },
