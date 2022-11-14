@@ -35,7 +35,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "express-routemap": "^1.6.0"
+    "express-routemap": "^1.6.0",
+    "nodemon": "^2.0.20"
   }
 }
