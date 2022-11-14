@@ -104,10 +104,10 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.BOOLEAN,
     defaultValue: null
    },
-country: {
-    type: DataTypes.STRING,
-    defaultValue: null
-},
+  country: {
+      type: DataTypes.STRING,
+      defaultValue: null
+  },
     state_origin: {
         type: DataTypes.STRING,
         defaultValue: null
