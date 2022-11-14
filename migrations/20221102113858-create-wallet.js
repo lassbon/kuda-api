@@ -24,7 +24,7 @@ module.exports = {
       customer_id: {
         type: Sequelize.STRING,
         references: {
-          model: 'Customers',
+          model: 'customers',
           key: 'customer_id'
         }
       },
