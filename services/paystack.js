@@ -3,8 +3,10 @@ const axios = require('axios')
 const baseUrl = process.env.PAYSTACK_BASE_URL
 
 
-const intializePayment =  ({amount, email}) => { 
-
+// const intializePayment =  ({amount, email}) => {  destructed the email and amount from the req.body, but femisola preffered it the other way
+   
+const initializePayment = (amount, email) => { 
+    console.log(" ia ma here")
       return  axios({
             method: 'post',
             url: `${baseUrl}/transaction/initialize`,
@@ -13,13 +15,13 @@ const intializePayment =  ({amount, email}) => {
                 'Content-Type': 'application/json'
             },
             data: {
-                amount: amount,
+                amount: amount * 100, //amount has to be in kobo, according to paystack
                 email: email
             }
         })
-
-
 }
+
+
 
 const verifyPayment = (ref) => { 
 
@@ -32,3 +34,7 @@ const verifyPayment = (ref) => {
         },
     })
 }
+
+
+
+module.exports = { initializePayment, verifyPayment }
