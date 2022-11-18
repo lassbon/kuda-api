@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { customer } = require('../models')
-
+const { generateOtp } = require('../utils')
 
 const login = async(req, res) => {
     const { email, password } = req.body

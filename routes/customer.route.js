@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { register, verifyEmailOtpAndSendPhoneOtp,
         verifyPhoneOtp, resendPhoneOtp, resendEmailOtp,
-        updateCustomer } = require('../controllers/customer.controllers')
+        updateCustomer, getCustomerDetails  } = require('../controllers/customer.controllers')
 const { authorization } = require('../middlewares/authorization')
 
 
@@ -16,6 +16,8 @@ router.get('/verify-phone-otp/:phone_otp/:phone', verifyPhoneOtp)
 router.post('/resend-phone-otp/:phone', resendPhoneOtp)
 
 router.post('/resend-email-otp/:email', resendEmailOtp)
+
+router.get('/profile/:customer_id', getCustomerDetails)
 
 router.put('/update/:customer_id', authorization, updateCustomer)
 
