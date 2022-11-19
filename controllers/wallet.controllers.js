@@ -97,5 +97,23 @@ const completeFundWallet = async (req, res) => {
 
 }
 
+const getAccountStatement = async (req, res) => { 
 
-module.exports = { createWallet , startFundWallet, completeFundWallet}
+    const { customer_id } = req.body.userData
+    try {
+        const transactionData = await transaction.findAll({ where: { customer_id: customer_id } })
+        
+        res.status(200).json({
+            status: true,
+            message: "Account statement retrieved successfully",
+            data: transactionData
+        })
+     }catch(error) {
+
+     }
+
+
+}
+
+
+module.exports = { createWallet , startFundWallet, completeFundWallet, getAccountStatement}
