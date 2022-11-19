@@ -14,9 +14,9 @@ router.post('/resend-phone-otp/:phone', resendPhoneOtp)
 
 router.post('/resend-email-otp/:email', resendEmailOtp)
 
-router.put('/update/:customer_id', updateCustomer)
+router.put('/update/:customer_id',authorization,updateCustomer)
 
-router.get('/login/:email/:password',authorization, login)
+router.get('/login/:email', login)
 
 
 
