@@ -1,9 +1,6 @@
 require('dotenv').config()
-const { registerValidation } = require('../validations/register.validation')
-const { updateValidation }  = require('../validations/update.validation')
+const { registerValidation }  = require('../validations/register.validation')
 const { customer, otp } = require('../models');
-const { createAccountNumber } =  require ('./account.controllers');
-const { createWallet } =  require ('./wallet.controllers');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
@@ -22,7 +19,7 @@ const register = (req, res) => {
             status: false,
             message: error.details[0].message
         })
-    }else{
+    }else{  
     
     const { surname, othernames, email, phone, password, repeat_password } = req.body;
         const customer_id = uuidv4()
@@ -56,17 +53,8 @@ const register = (req, res) => {
         })
 
     })
-    .then((createCustomerdata) => {
-   
-        const customer_fullname = `${surname} ${othernames}`
-        const sn = createCustomerdata.sn
-        return createAccountNumber(customer_id, customer_fullname, sn)
-
-    })
-     .then(createWalletData => {
-         return createWallet(1, 'NGN', customer_id)  //create wallet for the cutomwer
-     })   
     .then((insertIntoOtpTable) => {
+
      
         return otp.create({
            
@@ -88,7 +76,7 @@ const register = (req, res) => {
 
     })
     .catch((err) => {
-           console.log("errrr1: ", err)
+           
         res.status(400).json({
             status: false,
             message: err.message || "Some error occurred while creating the Customer."
@@ -97,7 +85,6 @@ const register = (req, res) => {
     })
 
     } catch (error) {
-        console.log("error: ", error)
         res.status(400).json({
             status: false,
             message: error.message || "Some error occurred while creating the Customer."
@@ -343,7 +330,6 @@ const resendEmailOtp = async (req, res) => {
      
 
     } catch (e) {
-        console.log(e)
         res.status(400).json({
             status: false,
             message: e.message || "Some error occurred"
@@ -356,60 +342,7 @@ const resendEmailOtp = async (req, res) => {
 }
 
 
-const updateCustomer = async (req, res) => {  
-        // joi validation
-    const { error, value } = updateValidation(req.body)
-
-    if (error != undefined) {
-          
-        res.status(400).json({
-            status: false,
-            message: error.details[0].message
-        })
-    } else {
-        const { customer_id } = req.params
-        const { title, lastname, othernames, gender, house_number, street, landmark, local_govt, dob,
-            country, state_origin, local_govt_origin, means_of_id, means_of_id_number, photo,
-            marital_status } = req.body
-    
-        try {
-    
-            await customer.update({
-                title: title,
-                lastname: lastname,
-                othernames: othernames,
-                gender: gender,
-                house_number: house_number,
-                street: street,
-                landmark: landmark,
-                local_govt: local_govt,
-                dob: dob,
-                country: country,
-                state_origin: state_origin,
-                local_govt_origin: local_govt_origin,
-                means_of_id: means_of_id,
-                means_of_id_number: means_of_id_number,
-                marital_status: marital_status
-            }, { where: { customer_id: customer_id } })
-    
-            res.status(200).send({
-                status: true,
-                message: 'Customer updated successfully'
-            })
-    
-        } catch (e) {
-            res.status(400).json({
-                status: false,
-                message: e.message || "Some error occurred"
-            })
-        }
-    }
-
-
-}
-
-
 module.exports = {
     register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
-    resendPhoneOtp, resendEmailOtp, updateCustomer
+    resendPhoneOtp, resendEmailOtp
 }
