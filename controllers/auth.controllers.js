@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { customer } = require('../models')
-
+const { generateOtp } = require('../utils')
 
 const login = async(req, res) => {
     const { email, password } = req.body
@@ -26,9 +26,10 @@ const login = async(req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '1h' })
         
+            res.setHeader('token', token)
             res.status(200).json({
                 status: true,
-                authorization: token,
+                token: token,
                 message: "Sucessfully login"
             })
 

@@ -6,10 +6,13 @@ const  sequelize  = require('./config/sequelize')
 const bodyParser = require('body-parser')
 const displayRoutes = require('express-routemap');
 const registerRoute = require('./routes/customer.route')
-
+const authRoute = require('./routes/auth.route')
+const walletRoute = require('./routes/wallet.route')
 
 app.use(bodyParser.json())
 app.use(registerRoute)
+app.use(authRoute)
+app.use(walletRoute)
 
 app.listen(port, () => {
 

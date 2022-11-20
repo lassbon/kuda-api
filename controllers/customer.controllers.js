@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { registerValidation }  = require('../validations/register.validation')
-const { customer, otp } = require('../models');
+const { customer, otp, account  } = require('../models');
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require('uuid')
 const { hashMyPassword, generateOtp } = require('../utils')
@@ -342,7 +342,36 @@ const resendEmailOtp = async (req, res) => {
 }
 
 
+const getCustomerDetails = async (req, res) => { 
+
+    const { customer_id } = req.params
+    const customerData = await customer.findOne({ where: { customer_id: customer_id } })
+    const accountData = await  account.findOne({  where: { customer_id: customer_id },
+                                               attributes: ['account_number', 'account_name', 'balance'] , 
+                                        })
+    
+    delete customerData.dataValues.password_hash
+    delete customerData.dataValues.password_salt
+
+    customerData.dataValues.accts = accountData
+
+
+    res.status(200).send({
+        status: true,
+        message: 'Customer details successfully fetched',
+        data: customerData
+    })
+        
+
+}
+
+
+
+
+
+
+
 module.exports = {
     register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
-    resendPhoneOtp, resendEmailOtp
+    resendPhoneOtp, resendEmailOtp, updateCustomer
 }

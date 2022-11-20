@@ -23,4 +23,4 @@ const createAccountNumber = (customer_id, customer_fullname, sn) => {
 }
 
 
-module.exports = { createAccountNumber }
+module.exports = { createAccountNumber, generateAccountNumber }

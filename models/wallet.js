@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     wallet_id: DataTypes.STRING,
-    wallet_type: DataTypes.ENUM(1, 2, 3),
+    wallet_type: DataTypes.ENUM(1, 2, 3), //1-spend, 2-save, 3-borrow
     balance: DataTypes.DECIMAL,
     currency: DataTypes.ENUM('NGN', 'USD'),
     customer_id: DataTypes.STRING,

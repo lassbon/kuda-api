@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Transactions', {
+    await queryInterface.createTable('transaction', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,6 +19,9 @@ module.exports = {
           model: 'Customers',
           key: 'customer_id'
         }
+      },
+      transaction_amount: {
+        type: Sequelize.DECIMAL(20, 2)
       },
       transaction_type: {
         type: Sequelize.ENUM('1', '2'), //1- debit, 2-credit
@@ -43,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Transactions');
+    await queryInterface.dropTable('transaction');
   }
 };
