@@ -1,7 +1,8 @@
 require('dotenv').config()
 const { registerValidation } = require('../validations/register.validation')
+const { beneficiaryValidation, updateBeneficiaryValidation } = require('../validations/beneficiary.validation')
 const { updateValidation }  = require('../validations/update.validation')
-const { customer, otp, account  } = require('../models');
+const { customer, otp, account, beneficiary  } = require('../models');
 const { createAccountNumber } =  require ('./account.controllers');
 const { createWallet } =  require ('./wallet.controllers');
 const { Op } = require("sequelize");
@@ -367,7 +368,7 @@ const updateCustomer = async (req, res) => {
             message: error.details[0].message
         })
     } else {
-        const { customer_id } = req.params
+        const { customer_id } = req.body.userData //from the authorization middleware
         const { title, lastname, othernames, gender, house_number, street, landmark, local_govt, dob,
             country, state_origin, local_govt_origin, means_of_id, means_of_id_number, photo,
             marital_status } = req.body
@@ -411,7 +412,7 @@ const updateCustomer = async (req, res) => {
 
 const getCustomerDetails = async (req, res) => { 
 
-    const { customer_id } = req.params
+    const { customer_id } = req.body.userData //from the authorization middleware
     const customerData = await customer.findOne({ where: { customer_id: customer_id } })
     const accountData = await  account.findOne({  where: { customer_id: customer_id },
                                                attributes: ['account_number', 'account_name', 'balance'] , 
@@ -433,12 +434,100 @@ const getCustomerDetails = async (req, res) => {
 }
 
 
+const addBeneficiary = async (req, res) => { 
+ 
+        // joi validation
+    const { error, value } = beneficiaryValidation(req.body)
+
+    if (error != undefined) {  
+        res.status(400).json({
+            status: false,
+            message: error.details[0].message
+        })
+    } else {
+            
+        const { customer_id } = req.body.userData //from the authorization middleware
+        try {
+            req.body.customer_id = customer_id
+            // req.body is an object with the beneficiary details,
+            // which we used the database properties to create the key value pairs
+            // passed in the request.Thi sgive sflexibilty to the frontend to pass
+            // in any key to create the beneficiary
+            await beneficiary.create(req.body)
+
+            res.status(200).send({
+                status: true,
+                message: 'Beneficiary added successfully'
+            })
+
+        } catch (e) {
+            res.status(400).json({
+                status: false,
+                message: e.message || "Some error occurred"
+            })
+        }
+    }
+    
+
+}
+
+const getAllBeneficiary = async (req, res) => { 
+
+    const { customer_id } = req.body.userData //from the authorization middleware
+    const beneficiaryData = await beneficiary.findAll({ where: { customer_id: customer_id } })
+    
+    res.status(200).send({
+        status: true,
+        message: 'Beneficiary details successfully fetched',
+        data: beneficiaryData
+    })
+        
+
+}
 
 
+
+const updateBeneficiary = async (req, res) => { 
+ 
+    // joi validation
+const { error, value } = updateBeneficiaryValidation(req.body)
+
+if (error != undefined) {  
+    res.status(400).json({
+        status: false,
+        message: error.details[0].message
+    })
+} else {
+
+    const { beneficiary_id } = req.params
+    try {
+
+        // req.body is an object with the beneficiary details,
+        // which we used the database properties to create the key value pairs
+        // passed in the request.Thi sgive sflexibilty to the frontend to pass
+        // in any key to create the beneficiary
+        await beneficiary.update(req.body, { where: { id: beneficiary_id } })
+
+        res.status(200).send({
+            status: true,
+            message: 'Beneficiary successfully updated'
+        })
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message || "Some error occurred"
+        })
+    }
+}
+
+
+}
 
 
 
 module.exports = {
     register, verifyEmailOtpAndSendPhoneOtp, verifyPhoneOtp,
-    resendPhoneOtp, resendEmailOtp, updateCustomer, getCustomerDetails
+    resendPhoneOtp, resendEmailOtp, updateCustomer, getCustomerDetails,
+    addBeneficiary, getAllBeneficiary, updateBeneficiary
 }

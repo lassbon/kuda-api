@@ -35,6 +35,18 @@ const verifyPayment = (ref) => {
     })
 }
 
+const getBank = () => { 
+
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/bank`,
+        headers: {
+            Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+            'Content-Type': 'application/json'
+        },
+    })
+}
 
 
-module.exports = { initializePayment, verifyPayment }
+
+module.exports = { initializePayment, verifyPayment, getBank }
