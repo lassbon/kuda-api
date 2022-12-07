@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require ('cors')
 const app = express()
 const port = process.env.APP_PORT
 const  sequelize  = require('./config/sequelize')
@@ -9,6 +10,8 @@ const registerRoute = require('./routes/customer.route')
 const authRoute = require('./routes/auth.route')
 const walletRoute = require('./routes/wallet.route')
 
+
+app.use(cors())
 app.use(bodyParser.json())
 app.use(registerRoute)
 app.use(authRoute)
