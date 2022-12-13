@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = process.env.APPPORT
 //const  sequelize  = require('./config/sequelize')
+const displayRoutes = require('express-routemap');
 const bodyParser = require('body-parser')
 const registerRoute = require('./route/customer')
 
