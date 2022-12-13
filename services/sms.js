@@ -1,7 +1,6 @@
 
 require('dotenv').config()
-const axios = require('axios');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch')
 const  formData = require('form-data');
 
 
