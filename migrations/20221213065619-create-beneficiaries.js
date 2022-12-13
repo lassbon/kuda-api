@@ -9,14 +9,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING
+      customer_id: {
+        type: Sequelize.STRING,
+          references: {
+            model: 'customers',
+            key: 'customer_id'
+        }
       },
-      lastName: {
-        type: Sequelize.STRING
+      fullname: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING
+      phone_number: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null,
+      },
+      bank_account: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null,
+      },
+      details: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null,
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Beneficiaries');
+    await queryInterface.dropTable('beneficiaries');
   }
 };
