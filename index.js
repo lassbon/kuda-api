@@ -24,4 +24,9 @@ app.listen(port, () => {
     
 })
 
+
+displayRoutes(app)
+
 console.log(`Example app listening on port ${port}`)
+
+
