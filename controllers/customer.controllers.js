@@ -2,7 +2,7 @@ require('dotenv').config()
 const { registerValidation } = require('../validations/register.validation')
 const { beneficiaryValidation, updateBeneficiaryValidation } = require('../validations/beneficiary.validation')
 const { updateValidation }  = require('../validations/update.validation')
-const { customer, otp, account, beneficiary  } = require('../models');
+const { customer, otp, account, beneficiary, wallet  } = require('../models');
 const { createAccountNumber } =  require ('./account.controllers');
 const { createWallet } =  require ('./wallet.controllers');
 const { Op } = require("sequelize");
@@ -417,11 +417,13 @@ const getCustomerDetails = async (req, res) => {
     const accountData = await  account.findOne({  where: { customer_id: customer_id },
                                                attributes: ['account_number', 'account_name', 'balance'] , 
                                         })
+    const walletData = await wallet.findOne({ where: { customer_id: customer_id } })
     
     delete customerData.dataValues.password_hash
     delete customerData.dataValues.password_salt
 
     customerData.dataValues.accts = accountData
+    customerData.dataValues.wallet = walletData
 
 
     res.status(200).send({
