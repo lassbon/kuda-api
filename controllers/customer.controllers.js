@@ -491,10 +491,6 @@ if (error != undefined) {
     const { beneficiary_id } = req.params
     try {
 
-        // req.body is an object with the beneficiary details,
-        // which we used the database properties to create the key value pairs
-        // passed in the request.Thi sgive sflexibilty to the frontend to pass
-        // in any key to create the beneficiary
         await beneficiary.update(req.body, { where: { id: beneficiary_id } })
 
         res.status(200).send({

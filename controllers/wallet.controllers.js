@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid')
 const { initializePayment, verifyPayment, getBank } = require('../services/paystack')
 const { ref } = require('joi')
 const { Op } = require('sequelize')
+
 const createWallet = (wallet_type, currency='NGN', customer_id) => {
 
     return wallet.create({
