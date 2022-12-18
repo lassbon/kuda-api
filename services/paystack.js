@@ -6,7 +6,7 @@ const baseUrl = process.env.PAYSTACK_BASE_URL
 // const intializePayment =  ({amount, email}) => {  destructed the email and amount from the req.body, but femisola preffered it the other way
    
 const initializePayment = (amount, email) => { 
-    console.log(" ia ma here")
+
       return  axios({
             method: 'post',
             url: `${baseUrl}/transaction/initialize`,
@@ -35,6 +35,18 @@ const verifyPayment = (ref) => {
     })
 }
 
+const getBank = () => { 
+
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/bank`,
+        headers: {
+            Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+            'Content-Type': 'application/json'
+        },
+    })
+}
 
 
-module.exports = { initializePayment, verifyPayment }
+
+module.exports = { initializePayment, verifyPayment, getBank }

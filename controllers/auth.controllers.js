@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt')
 const { customer } = require('../models')
 const { generateOtp } = require('../utils')
 
-const login = async(req, res) => {
+const login = async (req, res) => {
+    
     const { email, password } = req.body
     try {
         const user = await customer.findAll({ where: { email: email } })
