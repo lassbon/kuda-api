@@ -4,6 +4,7 @@ const { register, verifyEmailOtpAndSendPhoneOtp,
         verifyPhoneOtp, resendPhoneOtp, resendEmailOtp,
     updateCustomer, getCustomerDetails, addBeneficiary, getAllBeneficiary, updateBeneficiary
 } = require('../controllers/customer.controllers')
+const {findStock} = require (`../controllers/invest_stocks.controllers`)
 const { authorization } = require('../middlewares/authorization')
 
 
@@ -27,6 +28,7 @@ router.post('/beneficiary/add', authorization, addBeneficiary)
 router.get('/beneficiaries', authorization, getAllBeneficiary)
 
 router.put('/beneficiary/:beneficiary_id', authorization, updateBeneficiary)
+router.get(`/find-stock`,findStock)
 
 
 module.exports = router
