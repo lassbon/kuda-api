@@ -28,7 +28,8 @@ router.post('/beneficiary/add', authorization, addBeneficiary)
 router.get('/beneficiaries', authorization, getAllBeneficiary)
 
 router.put('/beneficiary/:beneficiary_id', authorization, updateBeneficiary)
-router.get(`/find-stock`,findStock)
+
+router.get(`/find-stock`,authorization,findStock)
 
 
 module.exports = router
