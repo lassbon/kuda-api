@@ -9,11 +9,13 @@ const displayRoutes = require('express-routemap');
 const registerRoute = require('./routes/customer.route')
 const authRoute = require('./routes/auth.route')
 const walletRoute = require('./routes/wallet.route')
+const airtimeRoute = require('./routes/airtime.route')
 
 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(registerRoute)
+app.use(airtimeRoute)
 app.use(authRoute)
 app.use(walletRoute)
 

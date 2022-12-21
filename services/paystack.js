@@ -1,7 +1,7 @@
 require('dotenv').config()
 const axios = require('axios')
 const baseUrl = process.env.PAYSTACK_BASE_URL
-
+ 
 
 // const intializePayment =  ({amount, email}) => {  destructed the email and amount from the req.body, but femisola preffered it the other way
    
